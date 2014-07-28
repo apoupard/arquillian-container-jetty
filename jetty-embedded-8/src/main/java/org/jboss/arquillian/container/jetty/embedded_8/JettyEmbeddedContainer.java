@@ -185,9 +185,9 @@ public class JettyEmbeddedContainer implements DeployableContainer<JettyEmbedded
 
             if (containerConfig.isJettyAnnotations())
             {
-                if (EnvUtil.classExists("org.eclipse.jetty.plus.annotations.AnnotationConfiguration"))
+                if (EnvUtil.classExists("org.eclipse.jetty.annotations.AnnotationConfiguration"))
                 {
-                    configs.add("org.eclipse.jetty.plus.annotations.AnnotationConfiguration");
+                    configs.add("org.eclipse.jetty.annotations.AnnotationConfiguration");
                 }
                 else
                 {

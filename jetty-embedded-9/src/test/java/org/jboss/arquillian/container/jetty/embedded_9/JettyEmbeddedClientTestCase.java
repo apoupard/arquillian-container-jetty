@@ -50,6 +50,11 @@ public class JettyEmbeddedClientTestCase
    {
       return ShrinkWrap.create(WebArchive.class, "client-test.war")
          .addClass(MyServlet.class)
+         .addClass(MyServlet.class)
+         .addClass(MyAnnotatedServlet.class)
+         .addClass(MyHandlesTypesServlet.class)
+         .addClass(JettyServletContainerInitializer.class)
+         .addAsServiceProvider(javax.servlet.ServletContainerInitializer.class, JettyServletContainerInitializer.class)
          .setWebXML(new StringAsset(Descriptors.create(WebAppDescriptor.class)
                .version("3.0")
                .createServlet()
@@ -70,6 +75,30 @@ public class JettyEmbeddedClientTestCase
       Assert.assertEquals(
             "Verify that the servlet was deployed and returns expected result",
             MyServlet.MESSAGE,
+            body);
+   }
+   
+   @Test
+   public void shouldBeAbleToInvokeAnnotatedServletInDeployedWebApp(@ArquillianResource URL url) throws Exception
+   {
+      String body = readAllAndClose(
+    		  new URL(url, MyAnnotatedServlet.URL_PATTERN).openStream());
+      
+      Assert.assertEquals(
+            "Verify that the annotated servlet was deployed and returns expected result",
+            MyAnnotatedServlet.MESSAGE,
+            body);
+   }
+   
+   @Test
+   public void shouldBeAbleToInvokeHandlesTypesServletInDeployedWebApp(@ArquillianResource URL url) throws Exception
+   {
+      String body = readAllAndClose(
+    		  new URL(url, MyHandlesTypesServlet.URL_PATTERN) .openStream());
+      
+      Assert.assertEquals(
+            "Verify that the annotated servlet was deployed and returns expected result",
+            MyHandlesTypesServlet.MESSAGE,
             body);
    }
 

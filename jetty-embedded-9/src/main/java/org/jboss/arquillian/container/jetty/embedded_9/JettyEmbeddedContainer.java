@@ -161,7 +161,9 @@ public class JettyEmbeddedContainer implements DeployableContainer<JettyEmbedded
                         ,EnvConfiguration.class.getName(),
                         PlusConfiguration.class.getName());
             }
-
+            
+            server.addBean(serverConf);
+            
             // Setup HTTP Configuration
             HttpConfiguration httpConfig = containerConfig.getHttpConfiguration();
             if (httpConfig == null)
