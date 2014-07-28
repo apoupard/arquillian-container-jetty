@@ -1,4 +1,3 @@
-package org.jboss.arquillian.container.jetty.embedded_7;
 /*
  * JBoss, Home of Professional Open Source
  * Copyright 2010, Red Hat Middleware LLC, and individual contributors
@@ -15,32 +14,17 @@ package org.jboss.arquillian.container.jetty.embedded_7;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.jboss.arquillian.container.jetty.embedded_8;
 
+import javax.annotation.Resource;
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-/**
- * TestServlet
- *
- */
-@WebServlet(urlPatterns= "/"+MyAnnotatedServlet.URL_PATTERN)
-public class MyAnnotatedServlet extends HttpServlet
+public class MyBean
 {
-   private static final long serialVersionUID = 1L;
+   @Resource(name = "name")
+   private String name;
 
-   public static final String URL_PATTERN = "MyAnnotatedServlet";
-
-   public static final String MESSAGE = "helloAnnotated";
-
-   @Override
-   protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+   public String getName()
    {
-      response.getWriter().append(MESSAGE);
+      return name;
    }
 }

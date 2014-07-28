@@ -1,3 +1,4 @@
+package org.jboss.arquillian.container.jetty.embedded_8;
 /*
  * JBoss, Home of Professional Open Source
  * Copyright 2010, Red Hat Middleware LLC, and individual contributors
@@ -14,11 +15,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.jboss.arquillian.container.jetty.embedded_7;
+
 
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,16 +28,15 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * TestServlet
  *
- * @author <a href="mailto:aslak@redhat.com">Aslak Knutsen</a>
- * @version $Revision: $
  */
-public class MyServlet extends HttpServlet
+@WebServlet(urlPatterns= "/"+MyAnnotatedServlet.URL_PATTERN)
+public class MyAnnotatedServlet extends HttpServlet
 {
    private static final long serialVersionUID = 1L;
 
-   public static final String URL_PATTERN = "Test";
+   public static final String URL_PATTERN = "MyAnnotatedServlet";
 
-   public static final String MESSAGE = "hello";
+   public static final String MESSAGE = "helloAnnotated";
 
    @Override
    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException

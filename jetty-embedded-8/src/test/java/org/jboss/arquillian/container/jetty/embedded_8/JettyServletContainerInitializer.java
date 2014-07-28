@@ -1,4 +1,4 @@
-package org.jboss.arquillian.container.jetty.embedded_7;
+package org.jboss.arquillian.container.jetty.embedded_8;
 
 
 import java.util.Set;
